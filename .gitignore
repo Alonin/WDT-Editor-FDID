@@ -50,3 +50,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+obj/Debug/net6.0-windows/WDT Editor FDID.assets.cache

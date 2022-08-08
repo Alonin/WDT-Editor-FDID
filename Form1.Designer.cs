@@ -47,6 +47,7 @@
             this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.fileListBox.Size = new System.Drawing.Size(592, 454);
             this.fileListBox.TabIndex = 0;
+            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
             // wdtLabel
             // 

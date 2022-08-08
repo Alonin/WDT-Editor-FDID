@@ -6,5 +6,10 @@ namespace WDT_Editor_FDID
         {
             InitializeComponent();
         }
+
+        private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
