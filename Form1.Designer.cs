@@ -29,25 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wdtEditor));
-            this.fileListBox = new System.Windows.Forms.ListBox();
             this.wdtLabel = new System.Windows.Forms.Label();
             this.loadWDTButton = new System.Windows.Forms.Button();
             this.searchBox1 = new System.Windows.Forms.TextBox();
             this.selectADTLabel = new System.Windows.Forms.Label();
             this.addADTButton = new System.Windows.Forms.Button();
             this.adtLabel = new System.Windows.Forms.Label();
+            this.fileListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // fileListBox
-            // 
-            this.fileListBox.FormattingEnabled = true;
-            this.fileListBox.ItemHeight = 15;
-            this.fileListBox.Location = new System.Drawing.Point(12, 49);
-            this.fileListBox.Name = "fileListBox";
-            this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.fileListBox.Size = new System.Drawing.Size(592, 454);
-            this.fileListBox.TabIndex = 0;
-            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
             // wdtLabel
             // 
@@ -104,6 +93,17 @@
             this.adtLabel.Text = "Added ADT: ";
             this.adtLabel.Visible = false;
             // 
+            // fileListBox
+            // 
+            this.fileListBox.FormattingEnabled = true;
+            this.fileListBox.ItemHeight = 15;
+            this.fileListBox.Location = new System.Drawing.Point(10, 49);
+            this.fileListBox.Name = "fileListBox";
+            this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.fileListBox.Size = new System.Drawing.Size(592, 454);
+            this.fileListBox.TabIndex = 0;
+            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
+            // 
             // wdtEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -126,13 +126,12 @@
         }
 
         #endregion
-
-        private ListBox fileListBox;
         private Label wdtLabel;
         private Button loadWDTButton;
         private TextBox searchBox1;
         private Label selectADTLabel;
         private Button addADTButton;
         private Label adtLabel;
+        private ListBox fileListBox;
     }
 }
