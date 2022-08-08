@@ -1,0 +1,18 @@
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\bin\Debug\net6.0-windows\WDT Editor FDID.exe
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\bin\Debug\net6.0-windows\WDT Editor FDID.deps.json
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\bin\Debug\net6.0-windows\WDT Editor FDID.runtimeconfig.json
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\bin\Debug\net6.0-windows\WDT Editor FDID.dll
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\bin\Debug\net6.0-windows\WDT Editor FDID.pdb
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.csproj.AssemblyReference.cache
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT_Editor_FDID.wdtEditor.resources
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT_Editor_FDID.Properties.Resources.resources
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.csproj.GenerateResource.cache
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.AssemblyInfoInputs.cache
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.AssemblyInfo.cs
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.csproj.CoreCompileInputs.cache
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.dll
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\refint\WDT Editor FDID.dll
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.pdb
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\WDT Editor FDID.genruntimeconfig.cache
+C:\Users\timot\source\repos\WDT Editor FDID\WDT Editor FDID\obj\Debug\net6.0-windows\ref\WDT Editor FDID.dll
