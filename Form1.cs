@@ -1,3 +1,6 @@
+using System;
+using System.Text.RegularExpressions;
+using System.Runtime;
 namespace WDT_Editor_FDID
 {
     public partial class wdtEditor : Form
@@ -15,10 +18,11 @@ namespace WDT_Editor_FDID
             foreach (var line in File.ReadAllLines("listfileonlyadts.csv"))
 
             {
-                
-                string[] items = line.Split(Environment.NewLine);
+                Regex regex = new Regex("/|;");
+
+                string[] items = regex.Split(line);
                // File.AppendAllText("test.txt", line + items);
-                fileListBox.Items.Add(items[0]);
+                fileListBox.Items.Add(items[0] + " || " + items[4]);
 
             }
 
