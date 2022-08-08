@@ -54,3 +54,9 @@ obj/Debug/net6.0-windows/WDT Editor FDID.assets.cache
 obj/Debug/net6.0-windows/WDT Editor FDID.genruntimeconfig.cache
 obj/Debug/net6.0-windows/WDT Editor FDID.csproj.FileListAbsolute.txt
 *.cache
+bin/Debug/net6.0-windows/listfile01.csv
+bin/Debug/net6.0-windows/listfile22.csv
+bin/Debug/net6.0-windows/test.txt
+obj/Debug/net6.0-windows/WDT Editor FDID.csproj.FileListAbsolute.txt
+obj/Debug/net6.0-windows/WDT Editor FDID.genruntimeconfig.cache
+obj/Debug/net6.0-windows/WDT Editor FDID.csproj.GenerateResource.cache
