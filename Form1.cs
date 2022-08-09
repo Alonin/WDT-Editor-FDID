@@ -81,23 +81,34 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                     {
                         while(wdtReader.BaseStream.Position < pos + size)
                         {
+                           
                             main_seen = true;
                             var flags = wdtReader.ReadUInt32();
-                            adtname.Split("_");
-                            var x = adtname[1];
-                            var y = adtname[2];
-                            var offsetMain = 8 * (64 * y + x);
                             
-                            wdtStream.Position  = pos + size + offsetMain;
-                            MessageBox.Show("test!");
+                          // Regex regex = new Regex("");
+                          
+
+                            // goal is 12104 
+                           
                             
                           
 
                         }
-                        wdtWriter.Write(0x01);
-                    }
-                   
+                        adtname = fileListBox.SelectedItem.ToString();
+                    string[] test = adtname.Split(new char[] { '_', '.' });
+                    var x = test[1];
+                    var y = test[2];
+                    MessageBox.Show(x + " " + y);
+                    int xint = Int32.Parse(x);
+                    int yint = Int32.Parse(y);
+
+                    var offsetMain = xint * 8 + 64 * 8 * yint;
+                    wdtStream.Position = 60 + offsetMain;
+                    MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMain); ;
+                    wdtStream.WriteByte(01);
+
                     
+                    }
                     wdtReader.BaseStream.Position = pos + size;
                 }
                 adtLabel.Text = "Added ADT: " + adtname;
@@ -109,8 +120,9 @@ private void loadWDTButton_Click(object sender, EventArgs e)
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             adtname = fileListBox.SelectedItem.ToString();
+            var test = adtname.Split("_");
             adtLabel.Visible = true;
-          
+            adtLabel.Text = "x is " + test[1].ToString() + "y is " +  test[2];
            
         }
     }
