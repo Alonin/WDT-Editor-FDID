@@ -16,48 +16,55 @@ namespace WDT_Editor_FDID
         {
             InitializeComponent();
             loadCsv();
-            
         }
-        private void loadCsv()
+        public void loadCsv()
         {
           //  var values = File.ReadAllLines("listfile.csv");
                 
             foreach (var line in File.ReadAllLines("listfileonlyadts.csv"))
 
             {
-                Regex regex = new Regex("/|;");
+                Regex.Escape(".");
+                Regex regex = new Regex("[.]|/|;|_");
+                
+                {
+
+                };
 
                 string[] items = regex.Split(line);
                // File.AppendAllText("test.txt", line + items);
-                fileListBox.Items.Add(items[0] + " || " + items[4]);
+                fileListBox.Items.Add(items[0] + " || " + items[4] + "_" + items[5] + "_" + items[6] + "." + items[7]);
 
             }
-
-
-
+            
         }
-        private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private OpenFileDialog openfiledialog1;
-        private void loadWDTButton_Click(object sender, EventArgs e)
+       
+        public string wdtname = "";
+        public void openfiledialog()
         {
             openFileDialog1.Multiselect = false;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                wdtLabel.Visible = true;
+                wdtLabel.Text = "WDT Loaded: " + openFileDialog1.FileName;
 
             }
-
-
-
-
-
+            else
+            {
+                wdtLabel.Visible = true;
+                wdtLabel.Text = "Error! Please select a WDT File.";
+            }
+            wdtname = openFileDialog1.FileName;
+           
+        }
+private void loadWDTButton_Click(object sender, EventArgs e)
+        {
+            openfiledialog();
         }
 
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void addADTButton_Click(object sender, EventArgs e)
         {
-
+         //   File.AppendAllText()
         }
     }
 }

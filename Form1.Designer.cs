@@ -84,6 +84,7 @@
             this.addADTButton.TabIndex = 5;
             this.addADTButton.Text = "Add ADT";
             this.addADTButton.UseVisualStyleBackColor = true;
+            this.addADTButton.Click += new System.EventHandler(this.addADTButton_Click);
             // 
             // adtLabel
             // 
@@ -104,7 +105,7 @@
             this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.fileListBox.Size = new System.Drawing.Size(592, 454);
             this.fileListBox.TabIndex = 0;
-            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
+        //    this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
             // openFileDialog1
             // 
