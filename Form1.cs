@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Runtime;
+using Microsoft.VisualBasic;
 namespace WDT_Editor_FDID
 {
     public partial class wdtEditor : Form
@@ -56,7 +57,7 @@ namespace WDT_Editor_FDID
                 wdtLabel.Text = "Error! Please select a WDT File.";
             }
             wdtname = openFileDialog1.FileName;
-            MessageBox.Show(wdtname);
+        //    MessageBox.Show(wdtname);
            
         }
 private void loadWDTButton_Click(object sender, EventArgs e)
@@ -133,33 +134,38 @@ private void loadWDTButton_Click(object sender, EventArgs e)
 
                         var x = test[1];
                         var y = test[2];
-                        MessageBox.Show(x + " " + y);
+                     //   MessageBox.Show(x + " " + y);
                         int xint = Int32.Parse(x);
                         int yint = Int32.Parse(y);
 
                         var offsetMaid = xint * 32 + 64 * 32 * yint;
-                        MessageBox.Show("found MAID");
+                     //   MessageBox.Show("found MAID");
                         wdtStream.Position = 32836 + offsetMaid;
-                        MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
+                       // MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
                         int fdid = Int32.Parse(test2[0]);
-                        MessageBox.Show(fdid.ToString());
-                        uint fdid1 = Convert.ToUInt32(fdid);
+                      //  MessageBox.Show(fdid.ToString());
+                        uint rootadt = Convert.ToUInt32(fdid);
                       
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
-                        
-                        wdtWriter.Write(fdid1);
+                        wdtWriter.Write(rootadt);
+                        string obj0 = Interaction.InputBox("Input obj0 FDID", "", "");
+                        uint obj0Adt = Convert.ToUInt32(obj0);
+                        wdtWriter.Write(obj0Adt);
+                        string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
+                        uint obj1Adt = Convert.ToUInt32(obj1);
+                        wdtWriter.Write(obj1Adt);
+                        string tex0 = Interaction.InputBox("Input tex0 FDID", "", "");
+                        uint tex0Adt = Convert.ToUInt32(tex0);
+                        wdtWriter.Write(tex0Adt);
+
+                        //wdtWriter.Write(fdid1);
+
+                        //wdtWriter.Write(fdid1);
+
+                        //wdtWriter.Write(fdid1);
+
+                        //wdtWriter.Write(fdid1);
+
+                        //wdtWriter.Write(fdid1);
 
                     }
                     wdtReader.BaseStream.Position = pos + size;
