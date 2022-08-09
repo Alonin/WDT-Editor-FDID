@@ -38,6 +38,7 @@ namespace WDT_Editor_FDID
             }
             
         }
+        public string adtname = "asdaf";
        
         public string wdtname = "";
         public void openfiledialog()
@@ -64,7 +65,16 @@ private void loadWDTButton_Click(object sender, EventArgs e)
 
         private void addADTButton_Click(object sender, EventArgs e)
         {
-         //   File.AppendAllText()
+           
+          
+        }
+
+        private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            adtname = fileListBox.SelectedItem.ToString();
+            adtLabel.Visible = true;
+            adtLabel.Text = adtname;
+           
         }
     }
 }
