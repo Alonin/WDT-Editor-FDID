@@ -86,14 +86,15 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                             adtname.Split("_");
                             var x = adtname[1];
                             var y = adtname[2];
-                            var test = 64 * y;
-                            var test2 = test + x;
+                            var offsetMain = 8 * (64 * y + x);
+                            
+                            wdtStream.Position  = pos + size + offsetMain;
+                            MessageBox.Show("test!");
+                            
+                          
 
-                            var offsetMain = 8 * test2;
-                            wdtStream.Position = pos + offsetMain;
-                            wdtWriter.Write(0x01);
                         }
-
+                        wdtWriter.Write(0x01);
                     }
                    
                     
