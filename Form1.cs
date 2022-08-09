@@ -18,6 +18,7 @@ namespace WDT_Editor_FDID
             InitializeComponent();
             loadCsv("listfileonlyadts.csv");
         }
+
         public void loadCsv(string csv)
         {
             //  var values = File.ReadAllLines("listfile.csv");
@@ -34,7 +35,7 @@ namespace WDT_Editor_FDID
 
                 string[] items = regex.Split(line);
                // File.AppendAllText("test.txt", line + items);
-                fileListBox.Items.Add(items[0] + " || " + items[4] + "_" + items[5] + "_" + items[6] + "." + items[7]);
+                fileListBox.Items.Add(items[0] + " ||" + items[4] + "_" + items[5] + "_" + items[6] + "." + items[7]);
 
             }
             
@@ -60,12 +61,24 @@ namespace WDT_Editor_FDID
         //    MessageBox.Show(wdtname);
            
         }
-private void loadWDTButton_Click(object sender, EventArgs e)
+        private void loadWDTButton_Click(object sender, EventArgs e)
         {
             openfiledialog();
         }
+              public void loadCsvForRoot (string csv2)
+        {
+           
 
-        private void addADTButton_Click(object sender, EventArgs e)
+            foreach (var line in File.ReadAllLines(csv2))
+
+            {
+                string[] splitFilesArray = line.Split(";");
+                string fdid_split = splitFilesArray[0];
+                string filename = splitFilesArray[1];
+
+            }
+        }
+            private void addADTButton_Click(object sender, EventArgs e)
         {
             using (Stream wdtStream = File.Open(openFileDialog1.FileName, FileMode.Open, FileAccess.ReadWrite))
             using (BinaryReader wdtReader = new BinaryReader(wdtStream))
@@ -141,15 +154,37 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                         var offsetMaid = xint * 32 + 64 * 32 * yint;
                      //   MessageBox.Show("found MAID");
                         wdtStream.Position = 32836 + offsetMaid;
-                       // MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
                         int fdid = Int32.Parse(test2[0]);
-                      //  MessageBox.Show(fdid.ToString());
                         uint rootadt = Convert.ToUInt32(fdid);
-                      
                         wdtWriter.Write(rootadt);
-                        string obj0 = Interaction.InputBox("Input obj0 FDID", "", "");
-                        uint obj0Adt = Convert.ToUInt32(obj0);
-                        wdtWriter.Write(obj0Adt);
+                        // MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
+                        foreach (var line1 in File.ReadAllLines("splitfiles01.csv"))
+
+                        {
+                            string adtname2 = "";
+                            adtname2 = fileListBox.SelectedItem.ToString();
+                            string[] splitFilesArray = line1.Split(';', '.', '/');
+                            string fdid_split = splitFilesArray[0];
+                            string filename = splitFilesArray[4];
+                            string[] mapname = adtname2.Split(new char[] { '|', '.' });
+                            string mapname2 = mapname[2] + "_obj0";
+                           // MessageBox.Show(filename + " | | " + mapname[2] + "_obj0");
+                            StringComparison comp = StringComparison.OrdinalIgnoreCase;
+
+                            if (string.Equals(filename, mapname2) == true)
+                            {
+                                MessageBox.Show(filename + " " + fdid_split);
+                             //   string obj0 = Interaction.InputBox("Input obj0 FDID", "", "");
+                                uint obj0Adt = Convert.ToUInt32(fdid_split);
+                                
+                                wdtWriter.Write(obj0Adt);
+                                MessageBox.Show("edits written");
+                            }
+                        }
+
+
+                       
+                       
                         string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
                         uint obj1Adt = Convert.ToUInt32(obj1);
                         wdtWriter.Write(obj1Adt);
@@ -187,6 +222,12 @@ private void loadWDTButton_Click(object sender, EventArgs e)
             adtLabel.Visible = true;
             adtLabel.Text = "x is " + test[1].ToString() + "y is " +  test[2];
            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string[] test = adtname.Split(new char[] { '_', '|', '.' });
+            MessageBox.Show(test[2]);
         }
     }
 }

@@ -37,6 +37,7 @@
             this.adtLabel = new System.Windows.Forms.Label();
             this.fileListBox = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // wdtLabel
@@ -110,12 +111,23 @@
             // 
             this.openFileDialog1.Filter = "\"WDT Files|*.wdt|All files|*.*\"";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(185, 538);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Add ADT";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // wdtEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(614, 591);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.adtLabel);
             this.Controls.Add(this.addADTButton);
             this.Controls.Add(this.selectADTLabel);
@@ -140,5 +152,6 @@
         private Label adtLabel;
         private ListBox fileListBox;
         private OpenFileDialog openFileDialog1;
+        private Button button1;
     }
 }
