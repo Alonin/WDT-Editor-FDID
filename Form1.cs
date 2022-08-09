@@ -56,6 +56,7 @@ namespace WDT_Editor_FDID
                 wdtLabel.Text = "Error! Please select a WDT File.";
             }
             wdtname = openFileDialog1.FileName;
+            MessageBox.Show(wdtname);
            
         }
 private void loadWDTButton_Click(object sender, EventArgs e)
@@ -65,7 +66,42 @@ private void loadWDTButton_Click(object sender, EventArgs e)
 
         private void addADTButton_Click(object sender, EventArgs e)
         {
-           
+            using (Stream wdtStream = File.Open(openFileDialog1.FileName, FileMode.Open, FileAccess.ReadWrite))
+            using (BinaryReader wdtReader = new BinaryReader(wdtStream))
+            using (BinaryWriter wdtWriter = new BinaryWriter(wdtStream))
+            {
+                bool maid_seen = false;
+                bool main_seen = false;
+                while(wdtReader.BaseStream.Position != wdtReader.BaseStream.Length)
+                {
+                    var token = wdtReader.ReadUInt32();
+                    var size = wdtReader.ReadUInt32();
+                    var pos = wdtReader.BaseStream.Position;
+                    if(token == 1296124238)     //MAIN 
+                    {
+                        while(wdtReader.BaseStream.Position < pos + size)
+                        {
+                            main_seen = true;
+                            var flags = wdtReader.ReadUInt32();
+                            adtname.Split("_");
+                            var x = adtname[1];
+                            var y = adtname[2];
+                            var test = 64 * y;
+                            var test2 = test + x;
+
+                            var offsetMain = 8 * test2;
+                            wdtStream.Position = pos + offsetMain;
+                            wdtWriter.Write(0x01);
+                        }
+
+                    }
+                   
+                    
+                    wdtReader.BaseStream.Position = pos + size;
+                }
+                adtLabel.Text = "Added ADT: " + adtname;
+            }
+
           
         }
 
@@ -73,7 +109,7 @@ private void loadWDTButton_Click(object sender, EventArgs e)
         {
             adtname = fileListBox.SelectedItem.ToString();
             adtLabel.Visible = true;
-            adtLabel.Text = adtname;
+          
            
         }
     }
