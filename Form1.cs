@@ -94,7 +94,7 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                           
 
                         }
-                        adtname = fileListBox.SelectedItem.ToString();
+                    adtname = fileListBox.SelectedItem.ToString();
                     string[] test = adtname.Split(new char[] { '_', '.' });
                     var x = test[1];
                     var y = test[2];
@@ -106,8 +106,40 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                     wdtStream.Position = 60 + offsetMain;
                     MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMain); ;
                     wdtStream.WriteByte(01);
-
+                       
                     
+                    }
+                  
+                   if (token == 1296124228)
+                    {
+                        while (wdtReader.BaseStream.Position < pos + size)
+                        {
+                            maid_seen = true;
+                            var rootADT = wdtReader.ReadUInt32();
+                            var obj0ADT = wdtReader.ReadUInt32();
+                            var obj1ADT = wdtReader.ReadUInt32();
+                            var tex0ADT = wdtReader.ReadUInt32();
+                            var lodADT = wdtReader.ReadUInt32();
+                            var mapTexBLP = wdtReader.ReadUInt32();
+                            var mapTex_N_BLP = wdtReader.ReadUInt32();
+                            var minimapTex_BLP = wdtReader.ReadUInt32();
+
+
+                        }
+                        //first rootADT begins at 32836
+                        adtname = fileListBox.SelectedItem.ToString();
+                        string[] test = adtname.Split(new char[] { '_', '.' });
+                        var x = test[1];
+                        var y = test[2];
+                        MessageBox.Show(x + " " + y);
+                        int xint = Int32.Parse(x);
+                        int yint = Int32.Parse(y);
+
+                        var offsetMaid = xint * 32 + 64 * 32 * yint;
+                        MessageBox.Show("found MAID");
+                        wdtStream.Position = 32836 + offsetMaid;
+                        MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
+                        wdtStream.WriteByte(01);
                     }
                     wdtReader.BaseStream.Position = pos + size;
                 }
