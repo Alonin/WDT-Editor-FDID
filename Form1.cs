@@ -15,13 +15,13 @@ namespace WDT_Editor_FDID
         public wdtEditor()
         {
             InitializeComponent();
-            loadCsv();
+            loadCsv("listfileonlyadts.csv");
         }
-        public void loadCsv()
+        public void loadCsv(string csv)
         {
-          //  var values = File.ReadAllLines("listfile.csv");
-                
-            foreach (var line in File.ReadAllLines("listfileonlyadts.csv"))
+            //  var values = File.ReadAllLines("listfile.csv");
+
+            foreach (var line in File.ReadAllLines(csv))
 
             {
                 Regex.Escape(".");
@@ -145,7 +145,22 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                         MessageBox.Show(fdid.ToString());
                         uint fdid1 = Convert.ToUInt32(fdid);
                       
-                       wdtWriter.Write(fdid1);
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+                        
+                        wdtWriter.Write(fdid1);
+
                     }
                     wdtReader.BaseStream.Position = pos + size;
                 }
