@@ -156,6 +156,10 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                         string tex0 = Interaction.InputBox("Input tex0 FDID", "", "");
                         uint tex0Adt = Convert.ToUInt32(tex0);
                         wdtWriter.Write(tex0Adt);
+                        string lod = Interaction.InputBox("Input lod FDID", "", "");
+                        uint lodAdt = Convert.ToUInt32(lod);
+                        wdtWriter.Write(lodAdt);
+
 
                         //wdtWriter.Write(fdid1);
 
