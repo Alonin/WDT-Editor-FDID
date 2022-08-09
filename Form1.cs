@@ -129,6 +129,8 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                         //first rootADT begins at 32836
                         adtname = fileListBox.SelectedItem.ToString();
                         string[] test = adtname.Split(new char[] { '_', '.' });
+                        string[] test2 = adtname.Split(new char[] { '|' });
+
                         var x = test[1];
                         var y = test[2];
                         MessageBox.Show(x + " " + y);
@@ -139,7 +141,11 @@ private void loadWDTButton_Click(object sender, EventArgs e)
                         MessageBox.Show("found MAID");
                         wdtStream.Position = 32836 + offsetMaid;
                         MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
-                        wdtStream.WriteByte(01);
+                        int fdid = Int32.Parse(test2[0]);
+                        MessageBox.Show(fdid.ToString());
+                        uint fdid1 = Convert.ToUInt32(fdid);
+                      
+                       wdtWriter.Write(fdid1);
                     }
                     wdtReader.BaseStream.Position = pos + size;
                 }
