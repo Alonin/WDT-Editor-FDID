@@ -1,4 +1,11 @@
+
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Runtime;
 namespace WDT_Editor_FDID
@@ -30,6 +37,25 @@ namespace WDT_Editor_FDID
 
         }
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private OpenFileDialog openfiledialog1;
+        private void loadWDTButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Multiselect = false;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+
+
+
+
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }

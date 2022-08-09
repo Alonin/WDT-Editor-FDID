@@ -36,6 +36,7 @@
             this.addADTButton = new System.Windows.Forms.Button();
             this.adtLabel = new System.Windows.Forms.Label();
             this.fileListBox = new System.Windows.Forms.ListBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // wdtLabel
@@ -56,6 +57,7 @@
             this.loadWDTButton.TabIndex = 2;
             this.loadWDTButton.Text = "Select WDT";
             this.loadWDTButton.UseVisualStyleBackColor = true;
+            this.loadWDTButton.Click += new System.EventHandler(this.loadWDTButton_Click);
             // 
             // searchBox1
             // 
@@ -68,7 +70,7 @@
             // 
             this.selectADTLabel.AutoSize = true;
             this.selectADTLabel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.selectADTLabel.Location = new System.Drawing.Point(152, 9);
+            this.selectADTLabel.Location = new System.Drawing.Point(148, 9);
             this.selectADTLabel.Name = "selectADTLabel";
             this.selectADTLabel.Size = new System.Drawing.Size(262, 32);
             this.selectADTLabel.TabIndex = 4;
@@ -104,6 +106,10 @@
             this.fileListBox.TabIndex = 0;
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "\"WDT Files|*.wdt|All files|*.*\"";
+            // 
             // wdtEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -133,5 +139,6 @@
         private Button addADTButton;
         private Label adtLabel;
         private ListBox fileListBox;
+        private OpenFileDialog openFileDialog1;
     }
 }
