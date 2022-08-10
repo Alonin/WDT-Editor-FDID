@@ -1,4 +1,4 @@
-# WDT-Editor-FDID1
+# WDT-Editor-FDID
 Editor for post 8.1.5 WDT files. 
 
 It's recommended you update 
