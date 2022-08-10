@@ -161,39 +161,70 @@ namespace WDT_Editor_FDID
                         foreach (var line1 in File.ReadAllLines("splitfiles01.csv"))
 
                         {
+                            bool obj0_seen = false;
+                            bool obj1_seen = false;
+                            bool tex0_seen = false;
+                            bool lod_seen = false;
                             string adtname2 = "";
                             adtname2 = fileListBox.SelectedItem.ToString();
                             string[] splitFilesArray = line1.Split(';', '.', '/');
                             string fdid_split = splitFilesArray[0];
-                            string filename = splitFilesArray[4];
+                         //   string filename = splitFilesArray[4];
                             string[] mapname = adtname2.Split(new char[] { '|', '.' });
                             string mapname2 = mapname[2] + "_obj0";
                            // MessageBox.Show(filename + " | | " + mapname[2] + "_obj0");
                             StringComparison comp = StringComparison.OrdinalIgnoreCase;
 
-                            if (string.Equals(filename, mapname2) == true)
+                            if (string.Equals(splitFilesArray[4], mapname2) == true)
                             {
-                                MessageBox.Show(filename + " " + fdid_split);
-                             //   string obj0 = Interaction.InputBox("Input obj0 FDID", "", "");
+                                MessageBox.Show(splitFilesArray[4] + " " + fdid_split);
+                                //   string obj0 = Interaction.InputBox("Input obj0 FDID", "", "");
+                                 obj0_seen = true;
                                 uint obj0Adt = Convert.ToUInt32(fdid_split);
-                                
                                 wdtWriter.Write(obj0Adt);
-                                MessageBox.Show("edits written");
+                                MessageBox.Show("edits written obj0");
                             }
+                            if(splitFilesArray[4] == mapname[2] + "_obj1")
+                            {
+                                obj1_seen = true;
+                               // string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
+                                uint obj1Adt = Convert.ToUInt32(fdid_split);
+                                wdtWriter.Write(obj1Adt);
+                                MessageBox.Show("edits written obj1");
+                            }
+                            if (splitFilesArray[4] == mapname[2] + "_tex0")
+                            {
+                                 tex0_seen = true;
+                                // string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
+                                uint tex0Adt = Convert.ToUInt32(fdid_split);
+                                wdtWriter.Write(tex0Adt);
+                                MessageBox.Show("edits written tex0");
+                                break;
+                            }
+                            if (splitFilesArray[4] == mapname[2] + "_lod")
+                            {
+                                lod_seen = true;
+                                // string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
+                                uint lodAdt = Convert.ToUInt32(fdid_split);
+                                wdtWriter.Write(lodAdt);
+                                MessageBox.Show("edits written lod");
+                               // break;
+                            }
+                           
+                           
+
                         }
+                        MessageBox.Show("all edits applied");
 
 
-                       
-                       
-                        string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
-                        uint obj1Adt = Convert.ToUInt32(obj1);
-                        wdtWriter.Write(obj1Adt);
-                        string tex0 = Interaction.InputBox("Input tex0 FDID", "", "");
-                        uint tex0Adt = Convert.ToUInt32(tex0);
-                        wdtWriter.Write(tex0Adt);
-                        string lod = Interaction.InputBox("Input lod FDID", "", "");
-                        uint lodAdt = Convert.ToUInt32(lod);
-                        wdtWriter.Write(lodAdt);
+
+
+                        //string tex0 = Interaction.InputBox("Input tex0 FDID", "", "");
+                        //uint tex0Adt = Convert.ToUInt32(tex0);
+                        //wdtWriter.Write(tex0Adt);
+                        //string lod = Interaction.InputBox("Input lod FDID", "", "");
+                        //uint lodAdt = Convert.ToUInt32(lod);
+                        //wdtWriter.Write(lodAdt);
 
 
                         //wdtWriter.Write(fdid1);
