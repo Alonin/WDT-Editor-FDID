@@ -66,6 +66,7 @@
             this.searchBox1.Name = "searchBox1";
             this.searchBox1.Size = new System.Drawing.Size(592, 23);
             this.searchBox1.TabIndex = 3;
+            this.searchBox1.TextChanged += new System.EventHandler(this.searchBox1_TextChanged);
             // 
             // selectADTLabel
             // 
