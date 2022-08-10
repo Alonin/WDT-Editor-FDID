@@ -61,3 +61,8 @@ obj/Debug/net6.0-windows/WDT Editor FDID.csproj.FileListAbsolute.txt
 obj/Debug/net6.0-windows/WDT Editor FDID.genruntimeconfig.cache
 obj/Debug/net6.0-windows/WDT Editor FDID.csproj.GenerateResource.cache
 *.rar
+bin/Debug/net6.0-windows/splitfiles.csv
+bin/Debug/net6.0-windows/listfileonlyadts.1csv
+bin/Debug/net6.0-windows/listfileonlyad1ts.csv
+bin/Debug/net6.0-windows/New Text Document.txt
+bin/Debug/net6.0-windows/listfileonlyadts.1csv
