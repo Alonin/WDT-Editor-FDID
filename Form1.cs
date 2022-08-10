@@ -21,7 +21,6 @@ namespace WDT_Editor_FDID
 
         public void loadCsv(string csv)
         {
-            //  var values = File.ReadAllLines("listfile.csv");
 
             foreach (var line in File.ReadAllLines(csv))
 
@@ -34,14 +33,13 @@ namespace WDT_Editor_FDID
                 };
 
                 string[] items = regex.Split(line);
-                // File.AppendAllText("test.txt", line + items);
+                //todo: account for map names with _ in them.
                 fileListBox.Items.Add(items[0] + " ||" + items[4] + "_" + items[5] + "_" + items[6] + "." + items[7]);
 
             }
 
         }
-        public string adtname = "asdaf";
-
+        public string adtname = "";
         public string wdtname = "";
         public void openfiledialog()
         {
@@ -49,8 +47,7 @@ namespace WDT_Editor_FDID
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 wdtLabel.Visible = true;
-                wdtLabel.Text = "WDT Loaded: " + openFileDialog1.FileName;
-
+                wdtLabel.Text = "WDT Loaded: " + Path.GetFileName(openFileDialog1.FileName);
             }
             else
             {
@@ -58,7 +55,7 @@ namespace WDT_Editor_FDID
                 wdtLabel.Text = "Error! Please select a WDT File.";
             }
             wdtname = openFileDialog1.FileName;
-            //    MessageBox.Show(wdtname);
+            //DEBUG  MessageBox.Show(wdtname);
 
         }
         private void loadWDTButton_Click(object sender, EventArgs e)
@@ -80,6 +77,7 @@ namespace WDT_Editor_FDID
         }
         private void addADTButton_Click(object sender, EventArgs e)
         {
+         //   adtLabel.Text = "Please Wait..";
             using (Stream wdtStream = File.Open(openFileDialog1.FileName, FileMode.Open, FileAccess.ReadWrite))
             using (BinaryReader wdtReader = new BinaryReader(wdtStream))
             using (BinaryWriter wdtWriter = new BinaryWriter(wdtStream))
@@ -95,36 +93,27 @@ namespace WDT_Editor_FDID
                     {
                         while (wdtReader.BaseStream.Position < pos + size)
                         {
-
                             main_seen = true;
                             var flags = wdtReader.ReadUInt32();
 
-                            // Regex regex = new Regex("");
-
-
-                            // goal is 12104 
-
-
-
-
                         }
                         adtname = fileListBox.SelectedItem.ToString();
-                        string[] test = adtname.Split(new char[] { '_', '.' });
-                        var x = test[1];
-                        var y = test[2];
-                        // MessageBox.Show(x + " " + y);
+                        string[] adtArray = adtname.Split(new char[] { '_', '.' });
+                        var x = adtArray[1];
+                        var y = adtArray[2];
+                        
                         int xint = Int32.Parse(x);
                         int yint = Int32.Parse(y);
 
                         var offsetMain = xint * 8 + 64 * 8 * yint;
                         wdtStream.Position = 60 + offsetMain;
-                        //    MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMain); ;
+                       
                         wdtStream.WriteByte(01);
 
 
                     }
 
-                    if (token == 1296124228)
+                    if (token == 1296124228) //MAID
                     {
                         while (wdtReader.BaseStream.Position < pos + size)
                         {
@@ -140,24 +129,24 @@ namespace WDT_Editor_FDID
 
 
                         }
-                        //first rootADT begins at 32836
+                        
                         adtname = fileListBox.SelectedItem.ToString();
-                        string[] test = adtname.Split(new char[] { '_', '.' });
-                        string[] test2 = adtname.Split(new char[] { '|' });
+                        string[] adtArray = adtname.Split(new char[] { '_', '.' });
+                        string[] fdidArray = adtname.Split(new char[] { '|' });
 
-                        var x = test[1];
-                        var y = test[2];
-                        //   MessageBox.Show(x + " " + y);
+                        var x = adtArray[1];
+                        var y = adtArray[2];
+                       
                         int xint = Int32.Parse(x);
                         int yint = Int32.Parse(y);
 
                         var offsetMaid = xint * 32 + 64 * 32 * yint;
-                        //   MessageBox.Show("found MAID");
+                        //first rootADT entry begins at 32836
                         wdtStream.Position = 32836 + offsetMaid;
-                        int fdid = Int32.Parse(test2[0]);
+                        int fdid = Int32.Parse(fdidArray[0]);
                         uint rootadt = Convert.ToUInt32(fdid);
                         wdtWriter.Write(rootadt);
-                        // MessageBox.Show(xint + yint + Environment.NewLine + "Byte 0x01 written at !" + wdtStream.Position + Environment.NewLine + "Offset main is" + offsetMaid); ;
+                        
                         foreach (var line1 in File.ReadAllLines("splitfiles01.csv"))
 
                         {
@@ -169,42 +158,38 @@ namespace WDT_Editor_FDID
                             adtname2 = fileListBox.SelectedItem.ToString();
                             string[] splitFilesArray = line1.Split(';', '.', '/');
                             string fdid_split = splitFilesArray[0];
-                            //   string filename = splitFilesArray[4];
+                           
                             string[] mapname = adtname2.Split(new char[] { '|', '.' });
-                            string mapname2 = mapname[2] + "_obj0";
-                            // MessageBox.Show(filename + " | | " + mapname[2] + "_obj0");
-                            StringComparison comp = StringComparison.OrdinalIgnoreCase;
+                        
+                          
+                          
 
-                            if (string.Equals(splitFilesArray[4], mapname2) == true)
+                            if (splitFilesArray[4] == mapname[2] + "_obj0")
                             {
-                                //     MessageBox.Show(splitFilesArray[4] + " " + fdid_split);
-                                //   string obj0 = Interaction.InputBox("Input obj0 FDID", "", "");
+                               
                                 obj0_seen = true;
                                 uint obj0Adt = Convert.ToUInt32(fdid_split);
                                 wdtWriter.Write(obj0Adt);
-                                //        MessageBox.Show("edits written obj0");
+                                //obj 0 edit applied
                             }
                             if (splitFilesArray[4] == mapname[2] + "_obj1")
                             {
                                 obj1_seen = true;
-                                // string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
                                 uint obj1Adt = Convert.ToUInt32(fdid_split);
                                 wdtWriter.Write(obj1Adt);
-                                //    MessageBox.Show("edits written obj1");
+                                //obj 1 edit applied
                             }
                             if (splitFilesArray[4] == mapname[2] + "_tex0")
                             {
-                                tex0_seen = true;
-                                // string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
+                                tex0_seen = true;             
                                 uint tex0Adt = Convert.ToUInt32(fdid_split);
-                                wdtWriter.Write(tex0Adt);
-                                //    MessageBox.Show("edits written tex0");
+                                wdtWriter.Write(tex0Adt);    
+                                //tex0 edit applied
                                 break;
                             }
                             if (splitFilesArray[4] == mapname[2] + "_lod")
                             {
                                 lod_seen = true;
-                                // string obj1 = Interaction.InputBox("Input obj1 FDID", "", "");
                                 uint lodAdt = Convert.ToUInt32(fdid_split);
                                 wdtWriter.Write(lodAdt);
                                 //  MessageBox.Show("edits written lod");
@@ -214,33 +199,13 @@ namespace WDT_Editor_FDID
 
 
                         }
-                        MessageBox.Show("all edits applied");
-
-
-
-
-                        //string tex0 = Interaction.InputBox("Input tex0 FDID", "", "");
-                        //uint tex0Adt = Convert.ToUInt32(tex0);
-                        //wdtWriter.Write(tex0Adt);
-                        //string lod = Interaction.InputBox("Input lod FDID", "", "");
-                        //uint lodAdt = Convert.ToUInt32(lod);
-                        //wdtWriter.Write(lodAdt);
-
-
-                        //wdtWriter.Write(fdid1);
-
-                        //wdtWriter.Write(fdid1);
-
-                        //wdtWriter.Write(fdid1);
-
-                        //wdtWriter.Write(fdid1);
-
-                        //wdtWriter.Write(fdid1);
-
+                       
+                        adtLabel.Visible = true;
+                        adtLabel.Text = "Applied edits for: " + adtname;
                     }
                     wdtReader.BaseStream.Position = pos + size;
                 }
-                adtLabel.Text = "Added ADT: " + adtname;
+              
             }
 
 
@@ -250,15 +215,8 @@ namespace WDT_Editor_FDID
         {
             adtname = fileListBox.SelectedItem.ToString();
             var test = adtname.Split("_");
-            adtLabel.Visible = true;
-            adtLabel.Text = "x is " + test[1].ToString() + "y is " + test[2];
+         
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string[] test = adtname.Split(new char[] { '_', '|', '.' });
-            MessageBox.Show(test[2]);
         }
 
         private void searchBox1_TextChanged(object sender, EventArgs e)
@@ -269,7 +227,6 @@ namespace WDT_Editor_FDID
                 if (fileListBox.Items[i].ToString().Contains(SearchString))
                 {
                     fileListBox.SetSelected(i, true);
-
                     break;
                 }
             }
